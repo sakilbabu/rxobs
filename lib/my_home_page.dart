@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rxobservable/home_page_controller.dart';
+import 'package:rxobservable/my_seccond_page.dart';
 
 class MyHomePage extends StatelessWidget {
   final MyHomePageController controller;
@@ -28,12 +29,24 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.count.value = controller.count.value + 1;
-          // count2.value = count2.value + 1;
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              controller.count.value = controller.count.value + 1;
+              // count2.value = count2.value + 1;
+            },
+            child: Icon(Icons.add),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (c) => MySecondPage()));
+            },
+            child: Icon(Icons.forward),
+          ),
+        ],
       ),
     );
   }
