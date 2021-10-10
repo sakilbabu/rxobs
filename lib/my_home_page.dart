@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rxobservable/home_page_controller.dart';
 
 class MyHomePage extends StatelessWidget {
-  final count = 0.obs;
-  final count2 = 0.obs;
+  final MyHomePageController controller;
+  MyHomePage({Key? key})
+      : controller = Get.put(MyHomePageController()),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     print("build called");
@@ -16,18 +19,18 @@ class MyHomePage extends StatelessWidget {
           children: [
             Obx(() {
               print("obx1 called");
-              return Text("hello world $count");
+              return Text("hello world ${controller.count}");
             }),
             Obx(() {
               print("obx2 called");
-              return Text("hello World2 $count2");
+              return Text("hello World2 ${controller.count}");
             })
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          count.value = count.value + 1;
+          controller.count.value = controller.count.value + 1;
           // count2.value = count2.value + 1;
         },
         child: Icon(Icons.add),
